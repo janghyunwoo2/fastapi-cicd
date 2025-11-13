@@ -9,4 +9,4 @@
                   gitaction(제품)을 통해서 생성됨.
 └─ .gitignore   : github 에 등록시 배제될 파일/디렉토리 지정
 └─ main.py      : 서비스 엔트리 파일 (시작점)
-└─ requitements.txt : 필요한 설치 패키지 목록
+└─ requitements.txt : 필요한 설치 패키지 목록 
