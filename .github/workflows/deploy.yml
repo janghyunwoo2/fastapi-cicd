@@ -43,8 +43,8 @@ jobs:
               shell: bash
 
             # 3. 필요한 파일을 ec2에 복사 (SCP)
-            - name: Deploy sourcecode to Ec2
-              uses: appleboy/ssh-action@master
+            - name: Copy sourcecode to Ec2
+              uses: appleboy/ssh-action@v0.1.7
               with:
                 host: ${{ secrets.EC2_HOST }}
                 username: ${{ secrets.EC2_USERNAME }}
@@ -56,8 +56,8 @@ jobs:
                 target: "/home/ubuntu/projects"
 
             # 4. EC2에 필요한 배포 관련 스크립트 작동 (SSH)
-            - name: Deploy sourcecode to Ec2
-              uses: appleboy/ssh-action@master
+            - name: Run Script and Service Restart 
+              uses: appleboy/ssh-action@v0.1.7
               with:
                 host: ${{ secrets.EC2_HOST }}
                 username: ${{ secrets.EC2_USERNAME }}
