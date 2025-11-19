@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  # 1. mysql 서비스 구성  -> db
+  # 2. fatapi 서비스 구성 -> was
+  # 3. nginx 서비스 구성  -> web
+
+# 서비스들이 위치할 네트워크 구성
+networks:
+  
+# 볼륨 설정 -> 필요시 호스트 OS와 연결 (통상 DB)
+volumes:
+
