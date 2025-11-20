@@ -26,7 +26,6 @@ jobs:
         run: |
           pwd
           ls -al
-          cat requirements.txt
         shell: bash
 
       # 2. 필요시 환경설정 파일 구성(.env)
