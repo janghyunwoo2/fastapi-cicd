@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   # 1. mysql 서비스 구성  -> db
@@ -18,8 +18,34 @@ services:
     networks:
       - my-net
   # 2. fatapi 서비스 구성 -> was
+  app:
+    build: ./app
+    container_name: fastapi_app
+    restart: unless-stopped
+    # ports:
+    #   - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./app:/app
+    environment:
+      DATABASE_URL: "mysql+pymysql://guest:1234@db:3306/memo"
+    networks:
+      - my-net
+    depends_on:
+      - db
   # 3. nginx 서비스 구성  -> web
-
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/web.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - my-net
+    depends_on:
+      - app
 # 서비스들이 위치할 네트워크 구성
 networks:
   my-net:
